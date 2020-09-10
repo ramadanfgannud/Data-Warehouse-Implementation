@@ -1,0 +1,38 @@
+USE AdventureWorksDW
+GO
+
+
+ CREATE TABLE DimDate
+ (DateKey int NOT NULL PRIMARY KEY NONCLUSTERED,
+  CalendarYear int NOT NULL,
+  CalendarQuarter int NOT NULL,
+  MonthOfYear int NOT NULL,
+  [MonthName] nvarchar(15) NOT NULL,
+  [DayOfMonth] int NOT NULL,
+  [DayOfWeek] int NOT NULL,
+  [DayName] nvarchar(15) NOT NULL)
+
+
+-- POPULATE THE TIME DIMENSION TABLE
+DECLARE @StartDate datetime
+DECLARE @EndDate datetime
+SET @StartDate = '01/01/2002'
+SET @EndDate = getdate() 
+DECLARE @LoopDate datetime
+SET @LoopDate = @StartDate
+WHILE @LoopDate <= @EndDate
+BEGIN
+  INSERT INTO dbo.DimDate VALUES
+	(
+		CAST(CONVERT(VARCHAR(8), @LoopDate, 112) AS int) , -- date key
+		Year(@LoopDate), -- calendar year
+		datepart(qq, @LoopDate), -- calendar quarter
+		Month(@LoopDate), -- month number of year
+		datename(mm, @LoopDate), -- month name
+		Day(@LoopDate),  -- day number of month
+		datepart(dw, @LoopDate), -- day number of week
+		datename(dw, @LoopDate) -- day name of week
+		
+	)  		  
+	SET @LoopDate = DateAdd(dd, 1, @LoopDate)
+END

@@ -1,0 +1,10 @@
+WITH XMLNAMESPACES 
+('http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/IndividualSurvey' AS ns)
+SELECT 
+BusinessEntityID,
+Demographics.value('(/ns:IndividualSurvey/ns:BirthDate)[1]', 'Date') AS BirthDate,
+Demographics.value('(/ns:IndividualSurvey/ns:Education)[1]', 'varchar(50)') AS Education,
+Demographics.value('(/ns:IndividualSurvey/ns:Gender)[1]', 'char(1)') AS Gender,
+Demographics.value('(/ns:IndividualSurvey/ns:Occupation)[1]', 'varchar(50)') AS Occupation,
+Demographics.value('(/ns:IndividualSurvey/ns:YearlyIncome)[1]', 'varchar(50)') AS YearlyIncome
+FROM Person.Person;

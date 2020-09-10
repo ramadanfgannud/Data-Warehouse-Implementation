@@ -1,0 +1,46 @@
+USE [AdventureWorksDW]
+GO
+DELETE FROM [dbo].[FactInventory] 
+GO
+
+USE [AdventureWorksDW]
+GO
+DELETE FROM [dbo].[FactPurchaseLine] 
+GO
+USE [AdventureWorksDW]
+GO
+DELETE FROM [dbo].[FactSalesLine] 
+GO
+USE [AdventureWorksDW]
+GO
+DELETE FROM [dbo].[DimVendor] 
+GO
+
+USE [AdventureWorksDW]
+GO
+DELETE FROM [dbo].[DimCurrencyRate] 
+GO
+USE [AdventureWorksDW]
+GO
+DELETE FROM [dbo].[DimCustomer] 
+GO
+USE [AdventureWorksDW]
+GO
+DELETE FROM [dbo].[DimProduct] 
+GO
+USE [AdventureWorksDW]
+GO
+DELETE FROM [dbo].[DimSalesPerson] 
+GO
+USE [AdventureWorksDW]
+GO
+DELETE FROM [dbo].[DimSalesReason] 
+GO
+USE [AdventureWorksDW]
+GO
+DELETE FROM [dbo].[DimSpecialOffer] 
+GO
+USE [AdventureWorksDW]
+GO
+DELETE FROM [dbo].[DimTerritory] 
+GO
